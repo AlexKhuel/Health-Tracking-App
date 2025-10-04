@@ -1,19 +1,9 @@
-// Install dependencies first:
-//   npm install openai readline-sync dotenv
-//
-// Create a .env file with your key:
-//   OPENAI_API_KEY=your_api_key_here
-//
-// Then run with:
-//   node foodLogger.js
+// Instead of require
+import OpenAI from "openai";
 
-const OpenAI = require("openai");
-const readlineSync = require("readline-sync");
-require("dotenv").config();
-
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+// And top-level await is fine in ES modules
+const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const response = await client.responses.create({ /* ... */ });
 
 // Helper: Ask the OpenAI model
 async function ask(prompt) {
